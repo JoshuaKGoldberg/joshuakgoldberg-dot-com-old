@@ -1,0 +1,30 @@
+{
+  "name": "joshuakgoldberg-dot-com",
+  "version": "1.0.0",
+  "description": "Personal website for Joshua K. Goldberg",
+  "main": " ",
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuakgoldberg/joshuakgoldberg-dot-com.git"
+  },
+  "keywords": [
+    "joshua",
+    "k",
+    "goldberg",
+    "personal",
+    "website",
+    "typescript"
+  ],
+  "author": "me@joshuakgoldberg.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshuakgoldberg/joshuakgoldberg-dot-com/issues"
+  },
+  "homepage": "https://github.com/joshuakgoldberg/joshuakgoldberg-dot-com#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

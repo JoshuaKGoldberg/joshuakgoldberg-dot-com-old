@@ -1,0 +1,405 @@
+/* General elements */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+html {
+    background: #fdfdfd;
+}
+
+body {
+    margin: auto;
+    padding: 0 35px;
+    max-width: 1080px;
+    color: #777;
+    font-family: "Lato Light", sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: 350ms padding;
+}
+
+ul {
+    margin-top: 0;
+    padding-left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+h3 {
+    margin-bottom: 35px;
+    font-family: "Lato Thin", sans-serif;
+    font-size: 3.5em;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+aside {
+    padding-top: 28px;
+    font-size: 1.4em;
+    text-align: right;
+}
+
+p {
+    margin: 0;
+    color: #969696;
+    font-family: "Open Sans Regular", sans-serif;
+    font-size: 1em;
+    -webkit-user-select: text;
+    -user-select: text;
+}
+
+img {
+    display: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+p a,
+aside a {
+    font-weight: bold;
+}
+
+
+/* Nav */
+
+nav {
+    display: none;
+    opacity: 0;
+}
+
+nav li {
+    position: relative;
+    padding: 7px 7px 3px 11px;
+    transition: 350ms;
+}
+
+nav li a {
+    clear: both;
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    transition: 350ms color;
+}
+
+nav li:after {
+    content: "";
+    width: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
+    transition: 350ms width;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7fff5+0,e7f5ff+100 */
+    background: #e7fff5; /* Old browsers */
+    background: -moz-linear-gradient(left,  #e7fff5 0%, #e7f5ff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #e7fff5 0%,#e7f5ff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #e7fff5 0%,#e7f5ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7fff5', endColorstr='#e7f5ff',GradientType=1 ); /* IE6-9 */
+}
+
+nav li.selected {
+     padding-right: 14px;
+}
+
+nav li.selected a {
+    padding-right: 14px;
+    color: black;
+    text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
+}
+
+nav li.selected:after {
+    width: 100%;
+}
+
+
+/* Sections */
+
+section {
+    margin-bottom: 70px;
+    padding-top: 35px;
+    clear: left;
+    overflow: hidden;
+}
+
+
+/* Images */
+
+img {
+    display: none;
+    opacity: 0;
+}
+
+img.headline {
+    float: right;
+    padding: 7px;
+    width: 266px;
+    height: 266px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 100%;
+}
+
+img.primary {
+    margin-right: 35px;
+    width: 175px;
+    height: 175px;
+}
+
+img.secondary {
+    width: 117px;
+    height: 117px;
+}
+
+a.secondary {
+    display: block;
+    padding: 21px 0;
+    font-size: 3.5em;
+}
+
+
+/* SVGs */
+
+svg.icon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #aaa;
+    border-radius: 100%;
+}
+
+svg path {
+    fill: none;
+    stroke: #777;
+    stroke-width: 3px;
+    z-index: -1;
+}
+
+
+/* Section: Contact */
+
+#contact {
+    font-size: 2.1em;
+}
+
+#contact em,
+#contact strong {
+    display: block;
+}
+
+#contact div {
+    overflow: hidden;
+}
+
+#contact em {
+    font-size: 1.4em;
+}
+
+#contact h1 {
+    margin: 7px 0;
+    font-size: 3.5em;
+    font-family: "Lato Regular", sans-serif;
+    line-height: 91%;
+}
+
+#contact h2 {
+    font-size: 1.17em;
+}
+
+#contact ul {
+    padding-top: 21px;
+}
+
+#contact ul strong {
+    display: inline;
+}
+
+#contact li {
+    display: inline-block;
+    margin: 0 21px 7px 0;
+}
+
+
+/* Adaptive (medium) */
+@media screen and (min-width: 560px) and (min-device-width: 1050px) {
+    img {
+        display: inline-block;
+        opacity: 1;
+        transition: 350ms opacity;
+    }
+
+    img.headline {
+        width: 175px;
+        height: 175px;
+    }
+
+
+    /* Sections */
+
+    h3 {
+        position: relative;
+        padding: 7px 0 0 0;
+        transition: 350ms color, 350ms padding-left;
+    }
+
+    section.selected h3 {
+        padding-left: 14px;
+        color: black;
+        text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
+    }
+
+    h3:after {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        z-index: -1;
+        transition: 490ms width;
+    }
+
+    section.selected h3:after {
+        width: 100%;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7f5ff+0,e7fff5+100 */
+        background: #e7f5ff; /* Old browsers */
+        background: -moz-linear-gradient(left,  #e7f5ff 0%, #e7fff5 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  #e7f5ff 0%,#e7fff5 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  #e7f5ff 0%,#e7fff5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7f5ff', endColorstr='#e7fff5',GradientType=1 ); /* IE6-9 */
+    }
+
+    img.headline {
+        margin-right: 0;
+        background-clip: padding-box;
+        transition: 490ms border-color, 350ms margin-top, 350ms background;
+    }
+
+    section.selected img.headline {
+        margin-top: -7px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7f5ff+0,e7fff5+100 */
+        background: #e7f5ff; /* Old browsers */
+        background: -moz-linear-gradient(left,  #e7f5ff 0%, #e7fff5 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  #e7f5ff 0%,#e7fff5 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  #e7f5ff 0%,#e7fff5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7f5ff', endColorstr='#e7fff5',GradientType=1 ); /* IE6-9 */
+    }
+
+    #contact {
+        font-size: 1.17em;
+    }
+
+
+    /* Callouts */
+
+    .callout {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .callout > img,
+    .callout > p {
+        align-self: center;
+    }
+
+
+    /* Groups */
+
+    .groups {
+        margin-top: 70px;
+        display: flex;
+        flex-flow: justify-content;
+        text-align: center;
+    }
+
+    .group {
+        margin: 0 14px;
+        flex: 1;
+        font-size: .84em;
+    }
+
+    .group img {
+        margin-bottom: 14px;
+    }
+}
+
+
+/* Adaptive (large) */
+
+@media screen and (min-width: 910px) and (min-device-width: 1050px) {
+    body {
+        padding: 0 14px 14px 14px;
+        transition: 210ms padding-top;
+    }
+
+    nav {
+        position: fixed;
+        padding: 77px 49px 0 0;
+        right: auto;
+        bottom: auto;
+        display: block;
+        width: 273px;
+        opacity: 1;
+        box-sizing: border-box;
+        text-align: right;
+        font-family: "Lato Thin", sans-serif;
+        font-size: 1.75em;
+        transition: 350ms opacity;
+    }
+
+    main {
+        margin-left: 273px;
+    }
+
+    img.headline {
+        margin-right: 28px;
+        float: left;
+        width: 266px;
+        height: 266px;
+    }
+
+    h3 {
+        font-size: 2.1em;
+    }
+}
+
+
+/* Fonts */
+
+@font-face {
+    font-family: "Lato Light";
+    src: url("fonts/Lato-Light.woff2") format("woff2"),
+         url("fonts/Lato-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Lato Thin";
+    src: url("fonts/Lato-Thin.woff2") format("woff2"),
+         url("fonts/Lato-Thin.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Lato Regular";
+    src: url("fonts/Lato-Regular.woff2") format("woff2"),
+         url("fonts/Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Open Sans Regular";
+    src: url("fonts/Open-Sans-Regular.woff2") format("woff2"),
+         url("fonts/Open-Sans-Regular.ttf") format("truetype");
+}
