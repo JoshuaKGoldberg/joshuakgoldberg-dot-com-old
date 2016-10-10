@@ -33,14 +33,21 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+h3, h4, h5 {
+    font-family: "Lato Thin", sans-serif;
+    user-select: none;
+    cursor: default;
+}
+
 h3 {
     margin-bottom: 35px;
-    font-family: "Lato Thin", sans-serif;
     font-size: 3.5em;
     font-weight: normal;
     text-transform: uppercase;
-    user-select: none;
-    cursor: default;
+}
+
+h5 {
+    font-size: 1.4em;
 }
 
 aside {
@@ -54,10 +61,6 @@ p {
     color: #969696;
     font-family: "Open Sans Regular", sans-serif;
     font-size: 1em;
-}
-
-img {
-    display: none;
 }
 
 a {
@@ -356,11 +359,24 @@ svg:hover path {
         text-align: center;
     }
 
+    .groups.extended {
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+
     .group {
         margin: 0 14px;
         flex: 1;
         font-size: .84em;
         border-bottom: none;
+    }
+
+    .groups.extended .group {
+        flex-basis: 210px;
+    }
+
+    .group h5 {
+        margin: 21px 0 7px;
     }
 
     .group img {
