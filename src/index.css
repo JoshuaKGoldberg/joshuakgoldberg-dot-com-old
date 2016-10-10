@@ -46,6 +46,10 @@ h3 {
     text-transform: uppercase;
 }
 
+h4 {
+    font-size: 1.75em;
+}
+
 h5 {
     font-size: 1.4em;
 }
@@ -61,6 +65,10 @@ p {
     color: #969696;
     font-family: "Open Sans Regular", sans-serif;
     font-size: 1em;
+}
+
+p.summary {
+    margin-bottom: 1.4em;
 }
 
 a {
@@ -283,6 +291,10 @@ svg:hover path {
         border: 1px solid #aaa;
     }
 
+    p.summary {
+        margin-bottom: 0;
+    }
+
 
     /* Sections */
 
@@ -314,6 +326,10 @@ svg:hover path {
     section.selected h3:after {
         width: 100%;
         background: linear-gradient(to right,  #e7f5ff 0%,#e7fff5 100%);
+    }
+
+    h4 {
+        display: none;
     }
 
     img.headline {
