@@ -17,7 +17,6 @@ body {
     max-width: 1080px;
     color: #777;
     font-family: "Lato Light", sans-serif;
-    -webkit-user-select: none;
     user-select: none;
     transition: 350ms padding;
 }
@@ -54,7 +53,6 @@ p {
     color: #969696;
     font-family: "Open Sans Regular", sans-serif;
     font-size: 1em;
-    -webkit-user-select: text;
     -user-select: text;
 }
 
@@ -103,12 +101,7 @@ nav li:after {
     position: absolute;
     z-index: -1;
     transition: 350ms width;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7fff5+0,e7f5ff+100 */
-    background: #e7fff5; /* Old browsers */
-    background: -moz-linear-gradient(left,  #e7fff5 0%, #e7f5ff 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(left,  #e7fff5 0%,#e7f5ff 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right,  #e7fff5 0%,#e7f5ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7fff5', endColorstr='#e7f5ff',GradientType=1 ); /* IE6-9 */
+    background: linear-gradient(to right,  #e7fff5 0%,#e7f5ff 100%);
 }
 
 nav li.selected {
@@ -150,17 +143,19 @@ img {
 
 img.headline {
     float: right;
-    padding: 11px;
     width: 266px;
     height: 266px;
     background: rgba(255, 255, 255, 0);
     border-radius: 100%;
 }
 
-img.primary {
+img.primary,
+svg.primary {
     margin-right: 35px;
     width: 175px;
     height: 175px;
+    min-width: 175px;
+    min-height: 175px;
 }
 
 img.secondary {
@@ -300,12 +295,7 @@ svg:hover path {
 
     section.selected h3:after {
         width: 100%;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7f5ff+0,e7fff5+100 */
-        background: #e7f5ff; /* Old browsers */
-        background: -moz-linear-gradient(left,  #e7f5ff 0%, #e7fff5 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left,  #e7f5ff 0%,#e7fff5 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to right,  #e7f5ff 0%,#e7fff5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7f5ff', endColorstr='#e7fff5',GradientType=1 ); /* IE6-9 */
+        background: linear-gradient(to right,  #e7f5ff 0%,#e7fff5 100%);
     }
 
     img.headline {
@@ -316,12 +306,6 @@ svg:hover path {
 
     section.selected img.headline {
         margin-top: -7px;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7f5ff+0,e7fff5+100 */
-        background: #e7f5ff; /* Old browsers */
-        background: -moz-linear-gradient(left,  #e7f5ff 0%, #e7fff5 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left,  #e7f5ff 0%,#e7fff5 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to right,  #e7f5ff 0%,#e7fff5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7f5ff', endColorstr='#e7fff5',GradientType=1 ); /* IE6-9 */
     }
 
     #contact {
