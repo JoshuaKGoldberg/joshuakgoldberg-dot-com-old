@@ -301,11 +301,13 @@ svg:hover path {
     img.headline {
         margin-right: 0;
         background-clip: padding-box;
-        transition: 490ms border-color, 350ms margin-top, 350ms background;
+        box-shadow: 0 0 3px 1px #d7efe5;
+        transition: 490ms border-color, 350ms margin-top, 350ms background, 350ms box-shadow;
     }
 
     section.selected img.headline {
-        margin-top: -7px;
+        margin-top: -7px;;
+        box-shadow: 0 7px 7px 3px #d7efe5;
     }
 
     #contact {
