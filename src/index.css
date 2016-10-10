@@ -115,10 +115,15 @@ nav li.selected {
      padding-right: 14px;
 }
 
+nav li:hover a,
 nav li.selected a {
     padding-right: 14px;
     color: black;
     text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
+}
+
+nav li:hover:after {
+    width: 94.5%;
 }
 
 nav li.selected:after {
@@ -145,7 +150,7 @@ img {
 
 img.headline {
     float: right;
-    padding: 7px;
+    padding: 11px;
     width: 266px;
     height: 266px;
     background: rgba(255, 255, 255, 0);
@@ -174,17 +179,28 @@ a.secondary {
 
 svg.icon {
     display: inline-block;
-    width: 70px;
-    height: 70px;
+    width: 210px;
+    height: 210px;
     border: 1px solid #aaa;
     border-radius: 100%;
+    box-shadow: 0 0 3px #ccc;
+    transition: 350ms border-color;
 }
 
-svg path {
+svg.icon:hover {
+    border-color: #77aaaa;
+}
+
+svg.icon path {
     fill: none;
     stroke: #777;
     stroke-width: 3px;
     z-index: -1;
+    transition: 350ms stroke;
+}
+
+svg:hover path {
+    stroke: #77aaaa;
 }
 
 
@@ -204,12 +220,14 @@ svg path {
 }
 
 #contact em {
+    padding-top: 7px;
     font-size: 1.4em;
 }
 
 #contact h1 {
     margin: 7px 0;
-    font-size: 3.5em;
+    color: #424242;
+    font-size: 2.8em;
     font-family: "Lato Regular", sans-serif;
     line-height: 91%;
 }
@@ -245,6 +263,13 @@ svg path {
         height: 175px;
     }
 
+    svg.icon {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        border: 1px solid #aaa;
+    }
+
 
     /* Sections */
 
@@ -255,7 +280,7 @@ svg path {
     }
 
     section.selected h3 {
-        padding-left: 14px;
+        padding-left: 11px;
         color: black;
         text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
     }
@@ -361,7 +386,7 @@ svg path {
         transition: 350ms opacity;
     }
 
-    main {
+    article {
         margin-left: 273px;
     }
 
