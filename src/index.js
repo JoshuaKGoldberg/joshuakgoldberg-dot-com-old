@@ -90,7 +90,11 @@
         const element = document.getElementById(hash);
 
         element.id = "";
-        window.location.hash = "#" + hash;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState({}, "", "#" + hash);
+        } else {
+            window.location.hash = "#" + hash;
+        }
         element.id = hash;
 
         if (!window.history || !window.history.pushState) {
