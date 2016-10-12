@@ -20,6 +20,12 @@ body {
     transition: 350ms padding;
 }
 
+::selection {
+    text-shadow: none;
+    background: #e7fff5;
+    color: #142135;
+}
+
 ul {
     margin-top: 0;
     padding-left: 0;
@@ -251,6 +257,7 @@ svg:hover path {
     font-size: 2.8em;
     font-family: "Lato Regular", sans-serif;
     line-height: 91%;
+    transition: 350ms text-shadow;
 }
 
 #contact h2 {
@@ -270,8 +277,13 @@ svg:hover path {
     margin: 0 21px 7px 0;
 }
 
+#contact.selected h1 {
+    text-shadow: 3px 3px 1px #e2f7f6;
+}
+
 
 /* Adaptive (medium) */
+
 @media screen and (min-width: 560px) and (min-device-width: 1050px) {
     img {
         display: inline-block;
