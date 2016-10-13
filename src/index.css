@@ -422,7 +422,7 @@ svg:hover path {
 
     nav {
         position: fixed;
-        padding: 154px 35px 0 0;
+        padding: 124px 35px 0 0;
         right: auto;
         bottom: auto;
         display: block;
@@ -440,7 +440,7 @@ svg:hover path {
     }
 
     section#contact {
-        padding-top: 140px;
+        padding-top: 117px;
     }
 
     img.headline {
