@@ -352,7 +352,7 @@ svg:hover path {
     }
 
     section.selected img.headline {
-        margin-top: -7px;;
+        margin-top: -3px;
         box-shadow: 0 7px 7px 3px #d7efe5;
     }
 
