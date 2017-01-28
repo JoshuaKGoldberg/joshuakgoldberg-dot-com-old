@@ -13,7 +13,7 @@ html {
 
 body {
     margin: auto;
-    padding: 0 35px;
+    padding: 0 21px;
     max-width: 1080px;
     color: #777;
     font-family: "Lato Light", sans-serif;
@@ -47,7 +47,7 @@ h3, h4, h5 {
 
 h3 {
     margin-bottom: 35px;
-    font-size: 3.5em;
+    font-size: 2.1em;
     font-weight: normal;
     text-transform: uppercase;
 }
@@ -206,8 +206,8 @@ a.secondary {
 
 svg.icon {
     display: inline-block;
-    width: 210px;
-    height: 210px;
+    width: 2.1em;
+    height: 2.1em;
     border: 1px solid #aaa;
     border-radius: 100%;
     box-shadow: 0 0 3px #ccc;
@@ -234,6 +234,7 @@ svg:hover path {
 /* Section: Contact */
 
 #contact {
+    padding-top: 14px;
     font-size: 2.1em;
 }
 
@@ -248,20 +249,19 @@ svg:hover path {
 
 #contact em {
     padding-top: 7px;
-    font-size: 1.4em;
 }
 
 #contact h1 {
     margin: 7px 0;
     color: #424242;
-    font-size: 2.8em;
+    font-size: 1.75em;
     font-family: "Lato Regular", sans-serif;
     line-height: 91%;
     transition: 350ms text-shadow;
 }
 
 #contact h2 {
-    font-size: 1.17em;
+    font-size: 1em;
 }
 
 #contact ul {
@@ -285,6 +285,18 @@ svg:hover path {
 /* Adaptive (medium) */
 
 @media screen and (min-width: 560px) and (min-device-width: 1050px) {
+    #contact em {
+        font-size: 1.4em;
+    }
+
+    #contact h1 {
+        font-size: 2.8em;
+    }
+
+    #contact h2 {
+        font-size: 1.17em;
+    }
+
     img {
         display: inline-block;
         opacity: 1;
@@ -440,7 +452,7 @@ svg:hover path {
     }
 
     section#contact {
-        padding-top: 117px;
+        padding-top: 98px;
     }
 
     img.headline {
