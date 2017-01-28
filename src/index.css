@@ -145,8 +145,7 @@ nav li.selected:after {
 /* Sections */
 
 section {
-    margin-bottom: 70px;
-    padding-top: 35px;
+    padding: 21px 0;
     clear: left;
     overflow: hidden;
 }
@@ -235,10 +234,9 @@ svg:hover path {
 
 #contact {
     padding-top: 14px;
-    font-size: 2.1em;
+    font-size: 1.75em;
 }
 
-#contact em,
 #contact strong {
     display: block;
 }
@@ -247,14 +245,10 @@ svg:hover path {
     overflow: hidden;
 }
 
-#contact em {
-    padding-top: 7px;
-}
-
 #contact h1 {
     margin: 7px 0;
     color: #424242;
-    font-size: 1.75em;
+    font-size: 2.1em;
     font-family: "Lato Regular", sans-serif;
     line-height: 91%;
     transition: 350ms text-shadow;
@@ -285,12 +279,13 @@ svg:hover path {
 /* Adaptive (medium) */
 
 @media screen and (min-width: 560px) and (min-device-width: 1050px) {
-    #contact em {
+    #contact {
+        padding-bottom: 98px;
         font-size: 1.4em;
     }
 
     #contact h1 {
-        font-size: 2.8em;
+        font-size: 2.1em;
     }
 
     #contact h2 {
@@ -366,10 +361,6 @@ svg:hover path {
     section.selected img.headline {
         margin-top: -3px;
         box-shadow: 0 7px 7px 3px #d7efe5;
-    }
-
-    #contact {
-        font-size: 1.17em;
     }
 
     footer {
@@ -449,10 +440,6 @@ svg:hover path {
 
     article {
         margin-left: 273px;
-    }
-
-    section#contact {
-        padding-top: 98px;
     }
 
     img.headline {
