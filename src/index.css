@@ -242,6 +242,7 @@ svg:hover path {
 }
 
 #contact div {
+    padding-top: 7px;
     overflow: hidden;
 }
 
