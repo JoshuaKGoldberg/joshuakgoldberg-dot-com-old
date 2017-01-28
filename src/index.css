@@ -442,6 +442,10 @@ svg:hover path {
         margin-left: 273px;
     }
 
+    section#contact {
+        padding-top: 98px;
+    }
+
     img.headline {
         margin-right: 28px;
         float: left;
