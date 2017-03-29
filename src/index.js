@@ -33,8 +33,6 @@
      * Maps event keys to -1 (left) or 1 (right).
      */
     const eventKeyCodes = {
-        33: -1,
-        34: 1,
         37: -1,
         39: 1,
     }
