@@ -335,7 +335,7 @@ a.secondary {
     }
 
     img.headline {
-        margin-right: 0;
+        margin-right: 14px;
         background-clip: padding-box;
         box-shadow: 0 0 3px 1px #d7efe5;
         transition:
@@ -434,7 +434,7 @@ a.secondary {
     }
 
     img.headline {
-        margin-right: 28px;
+        margin-right: 42px;
         float: left;
         width: 266px;
         height: 266px;
