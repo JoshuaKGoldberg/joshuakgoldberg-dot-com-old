@@ -10,9 +10,54 @@
     const sections = document.querySelectorAll("section");
 
     /**
+     * Images that will need to fade in.
+     */
+    const images = document.querySelectorAll("img");
+
+    /**
+     * CSS media query threshold to not load images.
+     */
+    const thinScreenThreshold = 560;
+
+    /**
+     * How many milliseconds it takes for an image to fade in or out.
+     */
+    const imageOpacityFadeTime = 350;
+
+    /**
      * Which section is currently selected.
      */
     let selectedSection = 0;
+
+    /**
+     * Loads an image's source then fades it in.
+     * 
+     * @param {HTMLImageElement} image   Image to visually fade in.
+     * @param {Boolean} skipRequest   Whether to skip requesting an image before setting it.
+     */
+    function fadeImageIn(image) {
+        const newImage = image.getAttribute("data-src");
+        const loadRequest = new XMLHttpRequest();
+
+        loadRequest.addEventListener("load", () => {
+            image.className += " loading";
+
+            setTimeout(
+                () => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        image.setAttribute("src", reader.result);
+                        image.className = image.className.replace("loading", "loaded");
+                    };
+                    reader.readAsDataURL(loadRequest.response);
+                },
+                imageOpacityFadeTime);
+        });
+
+        loadRequest.responseType = "blob";
+        loadRequest.open("GET", newImage);
+        loadRequest.send();
+    }
 
     /**
      * Throttles a synchronous callback to only run one at a time.
@@ -149,17 +194,10 @@
     })();
 
     /**
-     * Handles the page scrolling by checking for section selection.
+     * Handles the page loading by setting up scrolling and links.
      */
-    function onScroll() {
-        const offsetY = getOffsetY();
-        const newSection = getCurrentSection(sections, offsetY, window.innerHeight / 2);
-
-        setSelectedSection(newSection);
-        setLocationHash(sections[newSection].id);
-    }
-
-    window.onload = () => {
+    function onLoad() {
+        window.removeEventListener("load", onLoad);
         window.onscroll = throttleSync(onScroll);
         window.onscroll();
 
@@ -173,5 +211,37 @@
                 event.preventDefault();
             };
         }
-    };
+    }
+
+    /**
+     * Handles the page scrolling by checking for section selection.
+     */
+    function onScroll() {
+        const offsetY = getOffsetY();
+        const newSection = getCurrentSection(sections, offsetY, window.innerHeight / 2);
+
+        setSelectedSection(newSection);
+        setLocationHash(sections[newSection].id);
+    }
+
+    /**
+     * Handles screen resizing by checking if images should load.
+     */
+    function onResize() {
+        if (innerWidth < thinScreenThreshold) {
+            return;
+        }
+
+        window.removeEventListener("resize", onResize);
+
+        for (let i = 0; i < images.length; i += 1) {
+            setTimeout(fadeImageIn, i * 140, images[i]);
+        }
+    }
+
+    window.addEventListener("load", onLoad);
+    window.addEventListener("resize", onResize);
+    onResize();
+
+    setTimeout(() => document.body.style.opacity = "1", 117);
 })(window, document);

@@ -16,8 +16,9 @@ body {
     padding: 0 21px;
     max-width: 1080px;
     color: #777;
-    font-family: "Lato Light", sans-serif;
-    transition: 350ms padding;
+    opacity: 0;
+    font-family: "Lato Regular", sans-serif;
+    transition: 350ms padding, 490ms opacity;
 }
 
 ::selection {
@@ -40,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h3, h4, h5 {
-    font-family: "Lato Thin", sans-serif;
+    font-family: "Lato Regular", sans-serif;
     user-select: none;
     cursor: default;
 }
@@ -129,7 +130,7 @@ nav li.selected {
 nav li:hover a,
 nav li.selected a {
     padding-right: 14px;
-    color: black;
+    color: #424242;
     text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
 }
 
@@ -169,19 +170,27 @@ footer {
 
 img {
     display: none;
+    border-radius: 100%;
+    transition: 350ms opacity;
+}
+
+img.loading {
     opacity: 0;
+}
+
+img.loaded {
+    border-radius: initial;
+    opacity: 1;
 }
 
 img.headline {
     float: right;
     width: 266px;
     height: 266px;
-    background: rgba(255, 255, 255, 0);
     border-radius: 100%;
 }
 
-img.primary,
-svg.primary {
+img.primary {
     margin-right: 35px;
     width: 175px;
     height: 175px;
@@ -201,38 +210,11 @@ a.secondary {
 }
 
 
-/* SVGs */
-
-svg.icon {
-    display: inline-block;
-    width: 2.1em;
-    height: 2.1em;
-    border: 1px solid #aaa;
-    border-radius: 100%;
-    box-shadow: 0 0 3px #ccc;
-    transition: 350ms border-color;
-}
-
-svg.icon:hover {
-    border-color: #77aaaa;
-}
-
-svg.icon path {
-    fill: none;
-    stroke: #777;
-    stroke-width: 3px;
-    z-index: -1;
-    transition: 350ms stroke;
-}
-
-svg:hover path {
-    stroke: #77aaaa;
-}
-
-
 /* Section: Contact */
 
 #contact {
+    display: flex;
+    align-items: center;
     padding-top: 14px;
     font-size: 1.75em;
 }
@@ -241,8 +223,7 @@ svg:hover path {
     display: block;
 }
 
-#contact div {
-    padding-top: 7px;
+#contact div.headline {
     overflow: hidden;
 }
 
@@ -260,6 +241,7 @@ svg:hover path {
 }
 
 #contact ul {
+    margin-bottom:0;
     padding-top: 21px;
 }
 
@@ -270,6 +252,11 @@ svg:hover path {
 #contact li {
     display: inline-block;
     margin: 0 21px 7px 0;
+    font-weight: bold;
+}
+
+#contact li:not(:first-child) {
+    list-style: circle;
 }
 
 #contact.selected h1 {
@@ -295,20 +282,12 @@ svg:hover path {
 
     img {
         display: inline-block;
-        opacity: 1;
         transition: 350ms opacity;
     }
 
     img.headline {
         width: 175px;
         height: 175px;
-    }
-
-    svg.icon {
-        display: inline-block;
-        width: 70px;
-        height: 70px;
-        border: 1px solid #aaa;
     }
 
     p.summary {
@@ -326,7 +305,7 @@ svg:hover path {
 
     section.selected h3 {
         padding-left: 11px;
-        color: black;
+        color: #424242;
         text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
     }
 
@@ -356,7 +335,11 @@ svg:hover path {
         margin-right: 0;
         background-clip: padding-box;
         box-shadow: 0 0 3px 1px #d7efe5;
-        transition: 490ms border-color, 350ms margin-top, 350ms background, 350ms box-shadow;
+        transition:
+            490ms border-color,
+            350ms margin-top,
+            350ms box-shadow,
+            350ms opacity;
     }
 
     section.selected img.headline {
@@ -434,7 +417,7 @@ svg:hover path {
         opacity: 1;
         box-sizing: border-box;
         text-align: right;
-        font-family: "Lato Thin", sans-serif;
+        font-family: "Lato Regular", sans-serif;
         font-size: 1.75em;
         transition: 350ms opacity;
     }
@@ -461,18 +444,6 @@ svg:hover path {
 
 
 /* Fonts */
-
-@font-face {
-    font-family: "Lato Light";
-    src: url("fonts/Lato-Light.woff2") format("woff2"),
-         url("fonts/Lato-Light.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Lato Thin";
-    src: url("fonts/Lato-Thin.woff2") format("woff2"),
-         url("fonts/Lato-Thin.ttf") format("truetype");
-}
 
 @font-face {
     font-family: "Lato Regular";
