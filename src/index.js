@@ -25,6 +25,11 @@
     const imageOpacityFadeTime = 350;
 
     /**
+     * Data prefix for storing image data locally.
+     */
+    const localStoragePrefix = "jkg-dot-com-images:";
+
+    /**
      * Which section is currently selected.
      */
     let selectedSection = 0;
@@ -36,26 +41,43 @@
      * @param {Boolean} skipRequest   Whether to skip requesting an image before setting it.
      */
     function fadeImageIn(image) {
-        const newImage = image.getAttribute("data-src");
+        const newImageUri = image.getAttribute("data-src");
+        const storageKey = localStoragePrefix + newImageUri;
+
+        const storedData = localStorage.getItem(storageKey);
+        if (storedData) {
+            image.className += " loading";
+            setTimeout(
+                () => {
+                    image.setAttribute("src", storedData);
+                    image.className = image.className.replace("loading", "loaded");
+                },
+                imageOpacityFadeTime);
+            return;
+        }
+
         const loadRequest = new XMLHttpRequest();
 
         loadRequest.addEventListener("load", () => {
+            const response = loadRequest.response;
+
             image.className += " loading";
 
             setTimeout(
                 () => {
                     const reader = new FileReader();
                     reader.onloadend = () => {
+                        localStorage.setItem(storageKey, reader.result);
                         image.setAttribute("src", reader.result);
                         image.className = image.className.replace("loading", "loaded");
                     };
-                    reader.readAsDataURL(loadRequest.response);
+                    reader.readAsDataURL(response);
                 },
                 imageOpacityFadeTime);
         });
 
         loadRequest.responseType = "blob";
-        loadRequest.open("GET", newImage);
+        loadRequest.open("GET", newImageUri);
         loadRequest.send();
     }
 
