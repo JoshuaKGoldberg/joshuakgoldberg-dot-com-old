@@ -43,6 +43,11 @@
     let selectedSection = 0;
 
     /**
+     * Whether scroll events are attached to the window.
+     */
+    let addedScrollEvents = false;
+
+    /**
      * Loads an image's source then fades it in.
      * 
      * @param {HTMLImageElement} image   Image to visually fade in.
@@ -154,6 +159,7 @@
         }
 
         selectedSection = newSection;
+
         scrollToSection(newSection);
     }
 
@@ -194,7 +200,7 @@
             }
 
             scrolling = true;
-            window.removeEventListener("scroll", onScroll);
+            removeScrollEvents();
 
             const element = sections[sectionIndex];
             let lastOffsetY;
@@ -207,7 +213,7 @@
                 if (offsetY === lastOffsetY || difference === 0) {
                     scrolling = false;
                     lastOffsetY = undefined;
-                    window.addEventListener("scroll", onScroll);
+                    addScrollEvents();
                     return;
                 }
 
@@ -250,26 +256,6 @@
     }
 
     /**
-     * Handles the page loading by setting up scrolling and links.
-     */
-    function onLoad() {
-        window.removeEventListener("load", onLoad);
-        window.addEventListener("scroll", onScroll);
-        onScroll();
-
-        for (let i = 0; i < linkers.length; i += 1) {
-            linkers[i].onclick = event => {
-                if (event.ctrlKey) {
-                    return;
-                }
-
-                setSelectedSection(i);
-                event.preventDefault();
-            };
-        }
-    }
-
-    /**
      * Handles the page scrolling by checking for section selection.
      */
     const onScroll = throttleSync(function() {
@@ -282,6 +268,26 @@
 
         setLocationHash(sections[newSection].id);
     });
+
+    /**
+     * Attaches scrolling events to the window if they're not already attached.
+     */
+    function addScrollEvents() {
+        if (addedScrollEvents) {
+            return;
+        }
+
+        window.addEventListener("scroll", onScroll);
+        addedScrollEvents = true;
+    }
+
+    /**
+     * Removes attached scrolling events from the window.
+     */
+    function removeScrollEvents() {
+        window.removeEventListener("scroll", onScroll);
+        addedScrollEvents = false;
+    }
 
     /**
      * Handles screen resizing by checking if images should load.
@@ -298,9 +304,36 @@
         }
     }
 
-    window.addEventListener("keydown", onKeyDown);
+    /**
+     * Handles the page loading by setting up scrolling and links.
+     */
+    function onLoad() {
+        window.removeEventListener("load", onLoad);
+        window.addEventListener("keydown", onKeyDown);
+        window.addEventListener("resize", onResize);
+        window.addEventListener("scroll", onScroll);
+
+        window.addEventListener("touchcancel", addScrollEvents);
+        window.addEventListener("touchend", addScrollEvents);
+        window.addEventListener("touchstart", removeScrollEvents);
+        addScrollEvents();
+
+
+        onScroll();
+
+        for (let i = 0; i < linkers.length; i += 1) {
+            linkers[i].onclick = event => {
+                if (event.ctrlKey) {
+                    return;
+                }
+
+                setSelectedSection(i);
+                event.preventDefault();
+            };
+        }
+    }
+
     window.addEventListener("load", onLoad);
-    window.addEventListener("resize", onResize);
     onResize();
 
     setTimeout(() => document.body.style.opacity = "1", 117);
