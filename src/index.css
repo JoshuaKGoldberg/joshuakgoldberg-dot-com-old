@@ -18,7 +18,7 @@ body {
     color: #777;
     opacity: 0;
     font-family: "Lato Regular", sans-serif;
-    transition: 350ms padding, 490ms opacity;
+    transition: 350ms padding, 700ms opacity;
 }
 
 ::selection {
@@ -190,6 +190,8 @@ img.headline {
     float: right;
     width: 266px;
     height: 266px;
+    min-width: 266px;
+    min-height: 266px;
     border-radius: 100%;
 }
 

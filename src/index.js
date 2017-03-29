@@ -316,9 +316,8 @@
         window.addEventListener("touchcancel", addScrollEvents);
         window.addEventListener("touchend", addScrollEvents);
         window.addEventListener("touchstart", removeScrollEvents);
+
         addScrollEvents();
-
-
         onScroll();
 
         for (let i = 0; i < linkers.length; i += 1) {
