@@ -154,6 +154,7 @@
         }
 
         selectedSection = newSection;
+        scrollToSection(newSection);
     }
 
     /**
@@ -246,7 +247,6 @@
         }
 
         setSelectedSection(newSection);
-        scrollToSection(newSection);
     }
 
     /**
@@ -263,7 +263,7 @@
                     return;
                 }
 
-                scrollToSection(i);
+                setSelectedSection(i);
                 event.preventDefault();
             };
         }
