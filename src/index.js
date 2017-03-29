@@ -30,6 +30,16 @@
     const localStoragePrefix = "jkg-dot-com-images:";
 
     /**
+     * Maps event keys to -1 (left) or 1 (right).
+     */
+    const eventKeyCodes = {
+        33: -1,
+        34: 1,
+        37: -1,
+        39: 1,
+    }
+
+    /**
      * Which section is currently selected.
      */
     let selectedSection = 0;
@@ -185,6 +195,7 @@
             }
 
             scrolling = true;
+            window.removeEventListener("scroll", onScroll);
 
             const element = sections[sectionIndex];
             let lastOffsetY;
@@ -197,6 +208,7 @@
                 if (offsetY === lastOffsetY || difference === 0) {
                     scrolling = false;
                     lastOffsetY = undefined;
+                    window.addEventListener("scroll", onScroll);
                     return;
                 }
 
@@ -216,12 +228,36 @@
     })();
 
     /**
+     * Handles a key press by navigating to a next section if applicable.
+     * 
+     * @param {KeyboardEvent} event   The triggering event.
+     */
+    function onKeyDown(event) {
+        if (event.shiftKey || event.ctrlKey) {
+            return;
+        }
+
+        const direction = eventKeyCodes[event.keyCode];
+        if (!direction) {
+            return;
+        }
+
+        const newSection = selectedSection + direction;
+        if (newSection < 0 || newSection === sections.length) {
+            return;
+        }
+
+        setSelectedSection(newSection);
+        scrollToSection(newSection);
+    }
+
+    /**
      * Handles the page loading by setting up scrolling and links.
      */
     function onLoad() {
         window.removeEventListener("load", onLoad);
-        window.onscroll = throttleSync(onScroll);
-        window.onscroll();
+        window.addEventListener("scroll", onScroll);
+        onScroll();
 
         for (let i = 0; i < linkers.length; i += 1) {
             linkers[i].onclick = event => {
@@ -238,13 +274,16 @@
     /**
      * Handles the page scrolling by checking for section selection.
      */
-    function onScroll() {
+    const onScroll = throttleSync(function() {
         const offsetY = getOffsetY();
         const newSection = getCurrentSection(sections, offsetY, window.innerHeight / 2);
 
-        setSelectedSection(newSection);
+        if (newSection !== selectedSection) {
+            setSelectedSection(newSection);
+        }
+
         setLocationHash(sections[newSection].id);
-    }
+    });
 
     /**
      * Handles screen resizing by checking if images should load.
@@ -261,6 +300,7 @@
         }
     }
 
+    window.addEventListener("keydown", onKeyDown);
     window.addEventListener("load", onLoad);
     window.addEventListener("resize", onResize);
     onResize();
