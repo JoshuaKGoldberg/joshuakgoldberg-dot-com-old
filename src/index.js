@@ -20,6 +20,11 @@
     const thinScreenThreshold = 560;
 
     /**
+     * How many milliseconds to wait before initial fading in.
+     */
+    const initialFadeInDelay = 117;
+
+    /**
      * How many milliseconds it takes for an image to fade in or out.
      */
     const imageOpacityFadeTime = 350;
@@ -148,7 +153,7 @@
     }
 
     /**
-     * Sets the current selected section.
+     * Visually sets the current selected section.
      * 
      * @param {number} newSection   The new selected section's index.
      */
@@ -159,8 +164,6 @@
         }
 
         selectedSection = newSection;
-
-        scrollToSection(newSection);
     }
 
     /**
@@ -253,6 +256,7 @@
         }
 
         setSelectedSection(newSection);
+        scrollToSection(newSection);
     }
 
     /**
@@ -320,6 +324,10 @@
         addScrollEvents();
         onScroll();
 
+        if (selectedSection === 0) {
+            setTimeout(() => setSelectedSection(0), initialFadeInDelay);
+        }
+
         for (let i = 0; i < linkers.length; i += 1) {
             linkers[i].onclick = event => {
                 if (event.ctrlKey) {
@@ -327,6 +335,7 @@
                 }
 
                 setSelectedSection(i);
+                scrollToSection(newSection);
                 event.preventDefault();
             };
         }
@@ -335,5 +344,5 @@
     window.addEventListener("load", onLoad);
     onResize();
 
-    setTimeout(() => document.body.style.opacity = "1", 117);
+    setTimeout(() => document.body.style.opacity = "1", initialFadeInDelay);
 })(window, document);
