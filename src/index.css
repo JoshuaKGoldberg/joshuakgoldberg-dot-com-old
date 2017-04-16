@@ -219,6 +219,10 @@ a.secondary {
     font-size: 3.5em;
 }
 
+h5.imagelike {
+    display: none;
+}
+
 
 /* Section: Contact */
 
@@ -274,6 +278,16 @@ a.secondary {
 }
 
 
+/* Callouts */
+
+.callout {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #ccd;
+}
+
+
+
 /* Adaptive (medium) */
 
 @media screen and (min-width: 560px) and (min-device-width: 1050px) {
@@ -302,6 +316,10 @@ a.secondary {
 
     p.summary {
         margin-bottom: 0;
+    }
+
+    h5.imagelike {
+        display: initial;
     }
 
 
@@ -367,6 +385,7 @@ a.secondary {
     .callout {
         display: flex;
         justify-content: flex-start;
+        border-bottom: none;
     }
 
     .callout > img,
@@ -380,7 +399,7 @@ a.secondary {
     .groups {
         margin-top: 70px;
         display: flex;
-        flex-flow: justify-content;
+        flex-flow: justify-content;        
         text-align: center;
     }
 
@@ -466,6 +485,10 @@ a.secondary {
 
     h3 {
         font-size: 2.1em;
+    }
+
+    .groups {
+        border-top: none;
     }
 }
 
