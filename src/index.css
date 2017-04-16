@@ -400,9 +400,25 @@ a.secondary {
     }
 
     .group h5 {
-        margin: 21px 0 7px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
     }
 
+    .group h5:not(.emphasized) {
+        margin: 28px 0 14px;
+    }
+
+    .group h5.emphasized {
+        height: 117px;
+    }
+
+    .group h5.emphasized a {
+        font-size: 140%;
+    }
+
+    .group h5,
     .group img {
         margin-bottom: 14px;
     }
