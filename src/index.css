@@ -452,12 +452,12 @@ a.secondary {
 
 @font-face {
     font-family: "Lato Regular";
-    src: url("fonts/Lato-Regular.woff2") format("woff2"),
-         url("fonts/Lato-Regular.ttf") format("truetype");
+    src: url("fonts/Lato-Regular-Reduced.woff") format("woff"),
+         url("fonts/Lato-Regular-Reduced.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Open Sans Regular";
-    src: url("fonts/Open-Sans-Regular.woff2") format("woff2"),
-         url("fonts/Open-Sans-Regular.ttf") format("truetype");
+    src: url("fonts/Open-Sans-Regular-Reduced.woff") format("woff"),
+         url("fonts/Open-Sans-Regular-Reduced.ttf") format("truetype");
 }
