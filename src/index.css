@@ -62,7 +62,7 @@ h5 {
 }
 
 aside {
-    padding-top: 28px;
+    padding: 42px 0 28px;
     font-size: 1.4em;
     text-align: center;
 }
@@ -179,6 +179,7 @@ img {
     display: none;
     border-radius: 100%;
     transition: 350ms opacity;
+    user-select: none;
 }
 
 img.loading {
@@ -200,7 +201,7 @@ img.headline {
 }
 
 img.primary {
-    margin-right: 35px;
+    margin: 0 35px 0 28px;
     width: 175px;
     height: 175px;
     min-width: 175px;
@@ -444,6 +445,7 @@ a.secondary {
         text-align: right;
         font-family: "Lato Regular", sans-serif;
         font-size: 1.75em;
+        user-select: none;
         transition: 350ms opacity;
     }
 
