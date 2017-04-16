@@ -111,6 +111,10 @@ nav li a {
     transition: 350ms color;
 }
 
+nav li:hover {
+    cursor: pointer;
+}
+
 nav li:after {
     content: "";
     width: 0;

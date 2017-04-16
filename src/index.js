@@ -2,17 +2,17 @@
     /**
      * ToC-style List elements from the navbar.
      */
-    const linkers = document.querySelectorAll("nav ul li");
+    const linkers = [].slice.call(document.querySelectorAll("nav ul li"));
 
     /**
      * Main sections of the page.
      */
-    const sections = document.querySelectorAll("section");
+    const sections = [].slice.call(document.querySelectorAll("section"));
 
     /**
      * Images that will need to fade in.
      */
-    const images = document.querySelectorAll("img");
+    const images = [].slice.call(document.querySelectorAll("img"));
 
     /**
      * CSS media query threshold to not load images.
@@ -175,16 +175,14 @@
         const element = document.getElementById(hash);
 
         element.id = "";
+
         if (window.history && window.history.replaceState) {
             window.history.replaceState({}, "", "#" + hash);
         } else {
             window.location.hash = "#" + hash;
         }
-        element.id = hash;
 
-        if (!window.history || !window.history.pushState) {
-            return;
-        }
+        element.id = hash;
     }
 
     /**
@@ -262,7 +260,7 @@
     /**
      * Handles the page scrolling by checking for section selection.
      */
-    const onScroll = throttleSync(function() {
+    const onScroll = throttleSync(function () {
         const offsetY = getOffsetY();
         const newSection = getCurrentSection(sections, offsetY, window.innerHeight / 2);
 
@@ -309,6 +307,22 @@
     }
 
     /**
+     * Navigates to a linker's section.
+     * 
+     * @param {Event} event   The triggering event.
+     * @param {number} sectionIndex   Section index to scroll to.
+     */
+    function clickLinker(event, sectionIndex) {
+        if (event.ctrlKey) {
+            return;
+        }
+
+        setSelectedSection(sectionIndex);
+        scrollToSection(sectionIndex);
+        event.preventDefault();
+    }
+
+    /**
      * Handles the page loading by setting up scrolling and links.
      */
     function onLoad() {
@@ -324,20 +338,16 @@
         addScrollEvents();
         onScroll();
 
-        if (selectedSection === 0) {
-            setTimeout(() => setSelectedSection(0), initialFadeInDelay);
-        }
+        setTimeout(
+            () => {
+                if (selectedSection === 0) {
+                    setSelectedSection(0);
+                }
+            },
+            initialFadeInDelay);
 
         for (let i = 0; i < linkers.length; i += 1) {
-            linkers[i].onclick = event => {
-                if (event.ctrlKey) {
-                    return;
-                }
-
-                setSelectedSection(i);
-                scrollToSection(newSection);
-                event.preventDefault();
-            };
+            linkers[i].onclick = event => clickLinker(event, i);
         }
     }
 
