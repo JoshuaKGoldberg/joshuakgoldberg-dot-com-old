@@ -280,9 +280,11 @@ h5.imagelike {
 /* Callouts */
 
 .callout {
-    margin-bottom: 28px;
-    padding-bottom: 28px;
     border-bottom: 1px solid #ccd;
+}
+
+.groups.callout-groups {
+    margin-top: 21px;
 }
 
 
@@ -398,7 +400,6 @@ h5.imagelike {
     .groups {
         margin-top: 70px;
         display: flex;
-        flex-flow: justify-content;        
         text-align: center;
     }
 
