@@ -209,7 +209,6 @@ img.primary {
 }
 
 img.secondary {
-    width: 117px;
     height: 117px;
 }
 
@@ -479,7 +478,6 @@ h5.imagelike {
     img.headline {
         margin-right: 42px;
         float: left;
-        width: 266px;
         height: 266px;
     }
 
