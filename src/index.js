@@ -331,11 +331,6 @@
         window.addEventListener("resize", onResize);
         window.addEventListener("scroll", onScroll);
 
-        window.addEventListener("touchcancel", addScrollEvents);
-        window.addEventListener("touchend", addScrollEvents);
-        window.addEventListener("touchstart", removeScrollEvents);
-
-        addScrollEvents();
         onScroll();
 
         setTimeout(
