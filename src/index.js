@@ -1,3 +1,5 @@
+// @ts-check
+
 (function (window, document) {
     /**
      * ToC-style List elements from the navbar.
@@ -56,7 +58,6 @@
      * Loads an image's source then fades it in.
      * 
      * @param {HTMLImageElement} image   Image to visually fade in.
-     * @param {Boolean} skipRequest   Whether to skip requesting an image before setting it.
      */
     function fadeImageIn(image) {
         const newImageUri = image.getAttribute("data-src");
@@ -131,7 +132,7 @@
     /**
      * Determines which section is currently active from the current offsetY.
      * 
-     * @param {HTMLElement[]}   Sections of the page.
+     * @param {HTMLElement[]} sections   Sections of the page.
      * @param {number} offsetY   The current offsetY.
      * @param {number} partialHeight   How much of the page to account for with scrolling.
      * @returns {number}   The index of the apparent current section.
@@ -185,17 +186,17 @@
         element.id = hash;
     }
 
-    /**
-     * Asynchronously scrolls to a section on the page.
-     * 
-     * @param {number} sectionIndex   Which section to scroll to.
-     * @remarks This is gated behind a status flag so calling it multiple
-     *          times in rapid succession won't interfere with its state.
-     */
     const scrollToSection = (() => {
         let scrolling = false;
 
-        return sectionIndex => {
+        /**
+         * Asynchronously scrolls to a section on the page.
+         * 
+         * @param {number} sectionIndex   Which section to scroll to.
+         * @remarks This is gated behind a status flag so calling it multiple
+         *          times in rapid succession won't interfere with its state.
+         */
+        return (sectionIndex) => {
             if (scrolling) {
                 return;
             }
@@ -309,7 +310,7 @@
     /**
      * Navigates to a linker's section.
      * 
-     * @param {Event} event   The triggering event.
+     * @param {MouseEvent} event   The triggering event.
      * @param {number} sectionIndex   Section index to scroll to.
      */
     function clickLinker(event, sectionIndex) {
