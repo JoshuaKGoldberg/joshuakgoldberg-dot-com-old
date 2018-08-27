@@ -292,8 +292,8 @@ h5.imagelike {
     }
 
     #contact {
-        padding-top: 14px;
-        padding-bottom: 98px;
+        padding-top: 28px;
+        padding-bottom: 14px;
         font-size: 1.4em;
     }
 
@@ -310,11 +310,6 @@ h5.imagelike {
         transition: 350ms opacity;
     }
 
-    img.headline {
-        width: 175px;
-        height: 175px;
-    }
-
     p.summary {
         margin-bottom: 0;
     }
@@ -323,6 +318,9 @@ h5.imagelike {
         display: initial;
     }
 
+    .text-together {
+        display: inline-block;
+    }
 
     /* Sections */
 
@@ -357,11 +355,11 @@ h5.imagelike {
     }
 
     h4 {
-        display: none;
+        display: block;
     }
 
     img.headline {
-        margin-right: 14px;
+        margin-right: 28px;
         background-clip: padding-box;
         box-shadow: 0 0 3px 1px #d7efe5;
         transition:
@@ -391,6 +389,12 @@ h5.imagelike {
     .callout > img,
     .callout > p {
         align-self: center;
+    }
+
+    .callout-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
 
@@ -473,6 +477,7 @@ h5.imagelike {
 
     #contact {
         padding-top: 98px;
+        padding-bottom: 70px;
     }
 
     img.headline {
