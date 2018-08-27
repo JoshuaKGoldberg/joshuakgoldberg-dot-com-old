@@ -4,42 +4,42 @@
     /**
      * ToC-style List elements from the navbar.
      */
-    const linkers = [].slice.call(document.querySelectorAll("nav ul li"));
+    var linkers = [].slice.call(document.querySelectorAll("nav ul li"));
 
     /**
      * Main sections of the page.
      */
-    const sections = [].slice.call(document.querySelectorAll("section"));
+    var sections = [].slice.call(document.querySelectorAll("section"));
 
     /**
      * Images that will need to fade in.
      */
-    const images = [].slice.call(document.querySelectorAll("img"));
+    var images = [].slice.call(document.querySelectorAll("img"));
 
     /**
      * CSS media query threshold to not load images.
      */
-    const thinScreenThreshold = 560;
+    var thinScreenThreshold = 560;
 
     /**
      * How many milliseconds to wait before initial fading in.
      */
-    const initialFadeInDelay = 117;
+    var initialFadeInDelay = 117;
 
     /**
      * How many milliseconds it takes for an image to fade in or out.
      */
-    const imageOpacityFadeTime = 350;
+    var imageOpacityFadeTime = 350;
 
     /**
      * Data prefix for storing image data locally.
      */
-    const localStoragePrefix = "jkg-dot-com-images:";
+    var localStoragePrefix = "jkg-dot-com-images:";
 
     /**
      * Maps event keys to -1 (left) or 1 (right).
      */
-    const eventKeyCodes = {
+    var eventKeyCodes = {
         37: -1,
         39: 1,
     }
@@ -47,12 +47,12 @@
     /**
      * Which section is currently selected.
      */
-    let selectedSection = 0;
+    var selectedSection = 0;
 
     /**
      * Whether scroll events are attached to the window.
      */
-    let addedScrollEvents = false;
+    var addedScrollEvents = false;
 
     /**
      * Loads an image's source then fades it in.
@@ -60,14 +60,14 @@
      * @param {HTMLImageElement} image   Image to visually fade in.
      */
     function fadeImageIn(image) {
-        const newImageUri = image.getAttribute("data-src");
-        const storageKey = localStoragePrefix + newImageUri;
+        var newImageUri = image.getAttribute("data-src");
+        var storageKey = localStoragePrefix + newImageUri;
 
-        const storedData = localStorage.getItem(storageKey);
+        var storedData = localStorage.getItem(storageKey);
         if (storedData) {
             image.className += " loading";
             setTimeout(
-                () => {
+                function ()  {
                     image.setAttribute("src", storedData);
                     image.className = image.className.replace("loading", "loaded");
                 },
@@ -75,17 +75,17 @@
             return;
         }
 
-        const loadRequest = new XMLHttpRequest();
+        var loadRequest = new XMLHttpRequest();
 
-        loadRequest.addEventListener("load", () => {
-            const response = loadRequest.response;
+        loadRequest.addEventListener("load", function ()  {
+            var response = loadRequest.response;
 
             image.className += " loading";
 
             setTimeout(
-                () => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
+                function ()  {
+                    var reader = new FileReader();
+                    reader.onloadend = function ()  {
                         localStorage.setItem(storageKey, reader.result);
                         image.setAttribute("src", reader.result);
                         image.className = image.className.replace("loading", "loaded");
@@ -106,16 +106,16 @@
      * @param {Function} callback
      */
     function throttleSync(callback) {
-        let running = false;
+        var running = false;
 
-        return () => {
+        return function ()  {
             if (running) {
                 return;
             }
 
             running = true;
 
-            setTimeout(() => {
+            setTimeout(function ()  {
                 callback();
                 running = false;
             });
@@ -144,7 +144,7 @@
 
         offsetY += partialHeight;
 
-        for (let i = sections.length - 1; i >= 0; i -= 1) {
+        for (var i = sections.length - 1; i >= 0; i -= 1) {
             if (sections[i].offsetTop < offsetY) {
                 return i;
             }
@@ -159,12 +159,22 @@
      * @param {number} newSection   The new selected section's index.
      */
     function setSelectedSection(newSection) {
-        for (const grouping of [linkers, sections]) {
-            grouping[selectedSection].className = "";
-            grouping[newSection].className = "selected";
-        }
+        updateSelectionClassNames(newSection, linkers);
+        updateSelectionClassNames(newSection, sections);
 
         selectedSection = newSection;
+    }
+
+    /**
+     * Swaps the class names for a grouping's two elements.
+     * 
+     * @param {number} newSection   The new selected section's index.
+     * @param {Object} grouping   Object containing two sections to update.
+     */
+    function updateSelectionClassNames(newSection, grouping) {
+        grouping[selectedSection].className = "";
+        grouping[newSection].className = "selected";
+
     }
 
     /**
@@ -173,7 +183,7 @@
      * @param {string} hash   A new section ID for a hash.
      */
     function setLocationHash(hash) {
-        const element = document.getElementById(hash);
+        var element = document.getElementById(hash);
 
         element.id = "";
 
@@ -186,8 +196,8 @@
         element.id = hash;
     }
 
-    const scrollToSection = (() => {
-        let scrolling = false;
+    var scrollToSection = (function ()  {
+        var scrolling = false;
 
         /**
          * Asynchronously scrolls to a section on the page.
@@ -196,7 +206,7 @@
          * @remarks This is gated behind a status flag so calling it multiple
          *          times in rapid succession won't interfere with its state.
          */
-        return (sectionIndex) => {
+        return function (sectionIndex) {
             if (scrolling) {
                 return;
             }
@@ -204,13 +214,13 @@
             scrolling = true;
             removeScrollEvents();
 
-            const element = sections[sectionIndex];
-            let lastOffsetY;
+            var element = sections[sectionIndex];
+            var lastOffsetY;
 
-            const scroller = () => {
-                const offsetY = getOffsetY();
-                const offsetTop = element.offsetTop;
-                let difference = offsetTop - offsetY;
+            var scroller = function ()  {
+                var offsetY = getOffsetY();
+                var offsetTop = element.offsetTop;
+                var difference = offsetTop - offsetY;
 
                 if (offsetY === lastOffsetY || difference === 0) {
                     scrolling = false;
@@ -244,12 +254,12 @@
             return;
         }
 
-        const direction = eventKeyCodes[event.keyCode];
+        var direction = eventKeyCodes[event.keyCode];
         if (!direction) {
             return;
         }
 
-        const newSection = selectedSection + direction;
+        var newSection = selectedSection + direction;
         if (newSection < 0 || newSection === sections.length) {
             return;
         }
@@ -261,15 +271,14 @@
     /**
      * Handles the page scrolling by checking for section selection.
      */
-    const onScroll = throttleSync(function () {
-        const offsetY = getOffsetY();
-        const newSection = getCurrentSection(sections, offsetY, window.innerHeight / 2);
+    var onScroll = throttleSync(function () {
+        var offsetY = getOffsetY();
+        var newSection = getCurrentSection(sections, offsetY, window.innerHeight / 2);
 
         if (newSection !== selectedSection) {
             setSelectedSection(newSection);
+            setLocationHash(sections[newSection].id);
         }
-
-        setLocationHash(sections[newSection].id);
     });
 
     /**
@@ -302,7 +311,7 @@
 
         window.removeEventListener("resize", onResize);
 
-        for (let i = 0; i < images.length; i += 1) {
+        for (var i = 0; i < images.length; i += 1) {
             setTimeout(fadeImageIn, i * 140, images[i]);
         }
     }
@@ -335,20 +344,26 @@
         onScroll();
 
         setTimeout(
-            () => {
+            function ()  {
                 if (selectedSection === 0) {
                     setSelectedSection(0);
                 }
             },
             initialFadeInDelay);
 
-        for (let i = 0; i < linkers.length; i += 1) {
-            linkers[i].onclick = event => clickLinker(event, i);
+        for (var i = 0; i < linkers.length; i += 1) {
+            linkers[i].onclick = function (event) {
+                clickLinker(event, i);
+            };
         }
     }
 
     window.addEventListener("load", onLoad);
     onResize();
 
-    setTimeout(() => document.body.style.opacity = "1", initialFadeInDelay);
+    setTimeout(
+        function () {
+            document.body.style.opacity = "1";
+        },
+        initialFadeInDelay);
 })(window, document);
