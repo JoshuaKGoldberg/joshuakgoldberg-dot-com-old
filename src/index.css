@@ -491,12 +491,14 @@ h4.imagelike {
 /* Fonts */
 
 @font-face {
+    font-display: block;
     font-family: "Lato Regular";
     src: url("fonts/Lato-Regular-Reduced.woff") format("woff"),
          url("fonts/Lato-Regular-Reduced.ttf") format("truetype");
 }
 
 @font-face {
+    font-display: block;
     font-family: "Open Sans Regular";
     src: url("fonts/Open-Sans-Regular-Reduced.woff") format("woff"),
          url("fonts/Open-Sans-Regular-Reduced.ttf") format("truetype");
