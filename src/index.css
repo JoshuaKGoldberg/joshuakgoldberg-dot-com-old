@@ -162,7 +162,6 @@ section {
 
 footer {
     margin: 21px 0 2.1em;
-    border-top: 1px solid #fafaff;
     padding: 35px 14px 35px;
     text-align: center;
 }
@@ -375,7 +374,6 @@ h4.imagelike {
     .callout {
         display: flex;
         justify-content: flex-start;
-        border-bottom: none;
     }
 
     .callout > img,
@@ -480,10 +478,6 @@ h4.imagelike {
 
     h2 {
         font-size: 2.1em;
-    }
-
-    .groups {
-        border-top: none;
     }
 }
 
