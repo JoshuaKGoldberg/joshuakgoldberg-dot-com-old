@@ -62,12 +62,6 @@ h4 {
     font-size: 1.4em;
 }
 
-aside {
-    padding: 42px 0 28px;
-    font-size: 1.4em;
-    text-align: center;
-}
-
 p {
     margin: 0;
     color: #494949;
@@ -168,6 +162,12 @@ footer {
 
 footer, aside {
     color: #565656;
+}
+
+aside {
+    float: right;
+    font-size: 1.17em;
+    padding-top: 0.4em;
 }
 
 
@@ -275,6 +275,10 @@ h4.imagelike {
 
 .groups.callout-groups {
     margin-top: 21px;
+}
+
+section>.callout:not(:first-of-type) {
+    margin-top: 14px;
 }
 
 
