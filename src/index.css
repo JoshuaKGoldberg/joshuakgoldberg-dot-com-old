@@ -79,7 +79,6 @@ a {
 }
 
 p a,
-aside a,
 footer a {
     font-weight: bold;
 }
@@ -451,7 +450,7 @@ section>.callout:not(:first-of-type) {
 
     nav {
         position: fixed;
-        padding: 140px 35px 0 0;
+        padding: 163px 35px 0 0;
         right: auto;
         bottom: auto;
         display: block;
