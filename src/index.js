@@ -37,14 +37,6 @@
     var localStoragePrefix = "jkg-dot-com-images:";
 
     /**
-     * Maps event keys to -1 (left) or 1 (right).
-     */
-    var eventKeyCodes = {
-        37: -1,
-        39: 1,
-    }
-
-    /**
      * Which section is currently selected.
      */
     var selectedSection = 0;
@@ -86,8 +78,8 @@
                 function ()  {
                     var reader = new FileReader();
                     reader.onloadend = function ()  {
-                        localStorage.setItem(storageKey, reader.result);
-                        image.setAttribute("src", reader.result);
+                        localStorage.setItem(storageKey, reader.result.toString());
+                        image.setAttribute("src", reader.result.toString());
                         image.className = image.className.replace("loading", "loaded");
                     };
                     reader.readAsDataURL(response);
@@ -108,7 +100,7 @@
     function throttleSync(callback) {
         var running = false;
 
-        return function ()  {
+        return function () {
             if (running) {
                 return;
             }
@@ -245,30 +237,6 @@
     })();
 
     /**
-     * Handles a key press by navigating to a next section if applicable.
-     * 
-     * @param {KeyboardEvent} event   The triggering event.
-     */
-    function onKeyDown(event) {
-        if (event.shiftKey || event.ctrlKey) {
-            return;
-        }
-
-        var direction = eventKeyCodes[event.keyCode];
-        if (!direction) {
-            return;
-        }
-
-        var newSection = selectedSection + direction;
-        if (newSection < 0 || newSection === sections.length) {
-            return;
-        }
-
-        setSelectedSection(newSection);
-        scrollToSection(newSection);
-    }
-
-    /**
      * Handles the page scrolling by checking for section selection.
      */
     var onScroll = throttleSync(function () {
@@ -337,7 +305,6 @@
      */
     function onLoad() {
         window.removeEventListener("load", onLoad);
-        window.addEventListener("keydown", onKeyDown);
         window.addEventListener("resize", onResize);
         window.addEventListener("scroll", onScroll);
 
