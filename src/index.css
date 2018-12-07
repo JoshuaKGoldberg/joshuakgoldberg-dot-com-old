@@ -277,7 +277,12 @@ h4.imagelike {
 }
 
 section>.callout:not(:first-of-type) {
-    margin-top: 14px;
+    margin-top: 28px;
+}
+
+aside.lower-date {
+    text-align: center;
+    float: none;
 }
 
 
