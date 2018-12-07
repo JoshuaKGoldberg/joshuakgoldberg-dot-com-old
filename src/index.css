@@ -360,9 +360,6 @@ aside.lower-date {
     img.headline {
         margin-right: 28px;
         background-clip: padding-box;
-    }
-
-    .popping {
         box-shadow: 0 0 3px 1px #d7efe5;
         transition:
             490ms border-color,
@@ -371,7 +368,7 @@ aside.lower-date {
             350ms opacity;
     }
 
-    section.selected .popping {
+    section.selected img.headline {
         box-shadow: 0 7px 7px 3px #d7efe5;
     }
 
