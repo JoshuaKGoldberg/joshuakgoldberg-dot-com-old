@@ -9,7 +9,8 @@
     "files": "run-p files:fonts files:images",
     "files:fonts": "xcopy src\\fonts lib\\fonts /isy",
     "files:images": "xcopy src\\img lib\\img /isy",
-    "js": "uglifyjs src/index.js --compress --mangle --output lib/index.js"
+    "js": "uglifyjs src/index.js --compress --mangle --output lib/index.js",
+    "verify": "npm run css && npm run html && npm run files && npm run js"
   },
   "repository": {
     "type": "git",
