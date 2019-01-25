@@ -257,7 +257,9 @@
             return;
         }
 
-        window.addEventListener("scroll", onScroll);
+        window.addEventListener("scroll", onScroll, {
+            passive: true,
+        });
         addedScrollEvents = true;
     }
 
@@ -305,8 +307,12 @@
      */
     function onLoad() {
         window.removeEventListener("load", onLoad);
-        window.addEventListener("resize", onResize);
-        window.addEventListener("scroll", onScroll);
+        window.addEventListener("resize", onResize, {
+            passive: true,
+        });
+        window.addEventListener("scroll", onScroll, {
+            passive: true,
+        });
 
         onScroll();
 
