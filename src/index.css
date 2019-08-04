@@ -65,10 +65,6 @@ h3 {
   font-size: 1.75em;
 }
 
-h3 {
-  font-size: 1.4em;
-}
-
 p {
   margin: 0;
   color: #494949;
@@ -149,26 +145,28 @@ section {
   overflow: hidden;
 }
 
+.callout,
 .group {
-  margin-bottom: 1.17em;
-  padding-bottom: 1.17em;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0;
 }
 
 footer {
-  margin: 21px 0 2.1em;
-  padding: 35px 14px 35px;
+  margin: 0 0 2.1em;
+  padding: 0 14px 3rem;
   text-align: center;
 }
 
 footer,
-aside {
+.years {
   color: #565656;
 }
 
-aside {
-  float: right;
-  font-size: 1.17em;
-  padding-top: 0.4em;
+.years {
+  font-size: 1rem;
+  padding-top: 0.7em;
+  font-style: italic;
 }
 
 /* Images */
@@ -225,7 +223,7 @@ h3.imagelike {
 #contact {
   display: flex;
   align-items: center;
-  padding-top: 14px;
+  padding-top: 1rem;
   font-size: 1.75em;
 }
 
@@ -271,22 +269,15 @@ h3.imagelike {
 
 /* Callouts */
 
-.groups.callout-groups {
-  margin-top: 21px;
-}
-
-section > .callout:not(:first-of-type) {
-  margin-top: 28px;
-}
-
-aside.lower-date {
-  text-align: center;
-  float: none;
+.heading-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /* Adaptive (medium) */
 
-@media screen and (min-width: 560px) and (min-device-width: 1050px) {
+@media screen and (min-width: 640px) and (min-device-width: 1050px) {
   h2 {
     margin-bottom: 35px;
   }
@@ -367,13 +358,18 @@ aside.lower-date {
   }
 
   footer {
-    margin-bottom: 0;
+    margin: 3.5rem 0 1.4rem;
+  }
+
+  .footer-line {
+    display: inline;
   }
 
   /* Callouts */
 
   .callout {
     display: flex;
+    flex-direction: row;
     justify-content: flex-start;
   }
 
@@ -391,49 +387,31 @@ aside.lower-date {
   /* Groups */
 
   .groups {
-    margin-top: 35px;
+    margin-top: 2.1rem;
     display: flex;
-    text-align: center;
-  }
-
-  .groups.extended {
-    flex-wrap: wrap;
-    margin-top: 35px;
   }
 
   .group {
-    margin: 0 14px;
-    flex: 1;
+    margin: 0 0 0.7rem;
     font-size: 0.84em;
     border-bottom: none;
+    flex: 1;
   }
 
-  .groups.extended .group {
-    flex-basis: 210px;
-  }
-
-  .group h3 {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .group h3:not(.emphasized) {
-    margin: 28px 0 14px;
-  }
-
-  .group h3.emphasized {
-    height: 117px;
-  }
-
-  .group h3.emphasized a {
-    font-size: 140%;
-  }
-
-  .group h3,
   .group img {
-    margin-bottom: 14px;
+    margin: 0.7rem 0;
+  }
+
+  .group:not(.callout) {
+    text-align: center;
+  }
+
+  .group:not(.callout) .heading-area {
+    flex-direction: column;
+  }
+
+  .group:not(.callout) .years {
+    padding: 0 0 0.35rem;
   }
 }
 
@@ -460,7 +438,7 @@ aside.lower-date {
     transition: 350ms opacity;
   }
 
-  article {
+  main {
     margin-left: 273px;
   }
 
