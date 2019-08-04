@@ -40,14 +40,14 @@ li {
 h1,
 h2,
 h3,
-h4,
+h3,
 h5 {
   margin: 0;
 }
 
 h2,
 h3,
-h4 {
+h3 {
   font-family: "Lato Regular", sans-serif;
   user-select: none;
   cursor: default;
@@ -65,7 +65,7 @@ h3 {
   font-size: 1.75em;
 }
 
-h4 {
+h3 {
   font-size: 1.4em;
 }
 
@@ -74,10 +74,6 @@ p {
   color: #494949;
   font-family: "Open Sans Regular", sans-serif;
   font-size: 1em;
-}
-
-p.summary {
-  margin-bottom: 1.4em;
 }
 
 a {
@@ -220,7 +216,7 @@ a.secondary {
   font-size: 3.5em;
 }
 
-h4.imagelike {
+h3.imagelike {
   display: none;
 }
 
@@ -314,7 +310,7 @@ aside.lower-date {
     margin-bottom: 0;
   }
 
-  h4.imagelike {
+  h3.imagelike {
     display: initial;
   }
 
@@ -395,14 +391,14 @@ aside.lower-date {
   /* Groups */
 
   .groups {
-    margin-top: 70px;
+    margin-top: 35px;
     display: flex;
     text-align: center;
   }
 
   .groups.extended {
     flex-wrap: wrap;
-    margin-top: 0;
+    margin-top: 35px;
   }
 
   .group {
@@ -416,26 +412,26 @@ aside.lower-date {
     flex-basis: 210px;
   }
 
-  .group h4 {
+  .group h3 {
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
   }
 
-  .group h4:not(.emphasized) {
+  .group h3:not(.emphasized) {
     margin: 28px 0 14px;
   }
 
-  .group h4.emphasized {
+  .group h3.emphasized {
     height: 117px;
   }
 
-  .group h4.emphasized a {
+  .group h3.emphasized a {
     font-size: 140%;
   }
 
-  .group h4,
+  .group h3,
   .group img {
     margin-bottom: 14px;
   }
