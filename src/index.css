@@ -208,16 +208,6 @@ img.secondary {
   height: 117px;
 }
 
-a.secondary {
-  display: block;
-  padding: 21px 0;
-  font-size: 3.5em;
-}
-
-h3.imagelike {
-  display: none;
-}
-
 /* Section: Contact */
 
 #contact {
@@ -247,10 +237,6 @@ h3.imagelike {
 #contact ul {
   margin-bottom: 0;
   padding-top: 21px;
-}
-
-#contact ul strong {
-  display: inline;
 }
 
 #contact li {
@@ -298,7 +284,7 @@ h3.imagelike {
   }
 
   p.summary {
-    margin-bottom: 0;
+    padding-bottom: 1.4rem;
   }
 
   h3.imagelike {
@@ -389,6 +375,10 @@ h3.imagelike {
   .groups {
     margin-top: 2.1rem;
     display: flex;
+  }
+
+  .callout-groups {
+    margin-top: 3.5rem;
   }
 
   .group {
