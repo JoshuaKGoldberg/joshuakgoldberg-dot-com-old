@@ -152,6 +152,10 @@ section {
   margin: 3rem 0;
 }
 
+.links {
+  margin-top: 0.5rem;
+}
+
 footer {
   margin: 0 0 2.1em;
   padding: 0 14px 3rem;
@@ -281,10 +285,6 @@ img.secondary {
   img {
     display: inline-block;
     transition: 350ms opacity;
-  }
-
-  p.summary {
-    padding-bottom: 1.4rem;
   }
 
   h3.imagelike {
@@ -433,7 +433,7 @@ img.secondary {
   }
 
   #contact {
-    padding-top: 98px;
+    padding-top: 117px;
     padding-bottom: 70px;
   }
 
