@@ -283,10 +283,6 @@ img.secondary {
     transition: 350ms opacity;
   }
 
-  p.summary {
-    padding-bottom: 1.4rem;
-  }
-
   h3.imagelike {
     display: initial;
   }
@@ -433,7 +429,7 @@ img.secondary {
   }
 
   #contact {
-    padding-top: 98px;
+    padding-top: 117px;
     padding-bottom: 70px;
   }
 
