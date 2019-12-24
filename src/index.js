@@ -183,54 +183,6 @@
     element.id = hash;
   }
 
-  var scrollToSection = (function() {
-    var scrolling = false;
-
-    /**
-     * Asynchronously scrolls to a section on the page.
-     *
-     * @param {number} sectionIndex   Which section to scroll to.
-     * @remarks This is gated behind a status flag so calling it multiple
-     *          times in rapid succession won't interfere with its state.
-     */
-    return function(sectionIndex) {
-      if (scrolling) {
-        return;
-      }
-
-      scrolling = true;
-      removeScrollEvents();
-
-      var element = sections[sectionIndex];
-      var lastOffsetY;
-
-      var scroller = function() {
-        var offsetY = getOffsetY();
-        var offsetTop = element.offsetTop;
-        var difference = offsetTop - offsetY;
-
-        if (offsetY === lastOffsetY || difference === 0) {
-          scrolling = false;
-          lastOffsetY = undefined;
-          addScrollEvents();
-          return;
-        }
-
-        if (difference > 0) {
-          difference = Math.min(difference, 49);
-        } else {
-          difference = Math.max(difference, -49);
-        }
-
-        lastOffsetY = offsetY;
-        window.scrollTo(0, offsetY + difference);
-        requestAnimationFrame(scroller);
-      };
-
-      scroller();
-    };
-  })();
-
   /**
    * Handles the page scrolling by checking for section selection.
    */
@@ -239,7 +191,7 @@
     var newSection = getCurrentSection(
       sections,
       offsetY,
-      window.innerHeight / 2
+      window.innerHeight / 4
     );
 
     if (newSection !== selectedSection) {
@@ -286,22 +238,6 @@
   }
 
   /**
-   * Navigates to a linker's section.
-   *
-   * @param {MouseEvent} event   The triggering event.
-   * @param {number} sectionIndex   Section index to scroll to.
-   */
-  function clickLinker(event, sectionIndex) {
-    if (event.ctrlKey) {
-      return;
-    }
-
-    setSelectedSection(sectionIndex);
-    scrollToSection(sectionIndex);
-    event.preventDefault();
-  }
-
-  /**
    * Handles the page loading by setting up scrolling and links.
    */
   function onLoad() {
@@ -312,20 +248,12 @@
     window.addEventListener("scroll", onScroll, {
       passive: true
     });
+    window.addEventListener("click", onScroll, {
+      passive: true
+    });
 
     onScroll();
-
-    setTimeout(function() {
-      if (selectedSection === 0) {
-        setSelectedSection(0);
-      }
-    }, initialFadeInDelay);
-
-    for (var i = 0; i < linkers.length; i += 1) {
-      linkers[i].onclick = function(event) {
-        clickLinker(event, i);
-      };
-    }
+    setTimeout(onScroll, initialFadeInDelay);
   }
 
   window.addEventListener("load", onLoad);
