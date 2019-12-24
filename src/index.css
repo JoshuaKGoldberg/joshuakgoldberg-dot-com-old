@@ -92,6 +92,7 @@ nav {
 nav li {
   position: relative;
   padding: 7px 7px 3px 11px;
+  transition: 350ms padding;
 }
 
 nav li a {
