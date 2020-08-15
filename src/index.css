@@ -153,6 +153,14 @@ section {
   margin: 3rem 0;
 }
 
+.talk {
+  font-size: 1rem;
+}
+
+.links {
+  margin-top: 0.5rem;
+}
+
 footer {
   margin: 0 0 2.1em;
   padding: 0 14px 3rem;
