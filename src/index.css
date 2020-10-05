@@ -384,6 +384,8 @@ img.secondary {
 
   .callout-groups {
     margin-top: 3.5rem;
+    row-gap: 2rem;
+    flex-wrap: wrap;
   }
 
   .group {
@@ -391,6 +393,10 @@ img.secondary {
     font-size: 0.84em;
     border-bottom: none;
     flex: 1;
+  }
+
+  .group-large {
+    min-width: 40%;
   }
 
   .group img {
