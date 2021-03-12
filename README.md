@@ -5,5 +5,5 @@ My website.
 ## Development
 
 ```shell
-npx http-server src
+npm start
 ```
