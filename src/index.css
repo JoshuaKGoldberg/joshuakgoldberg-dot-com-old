@@ -39,23 +39,20 @@ li {
 
 h1,
 h2,
-h3,
-h3,
-h5 {
+h3 {
   margin: 0;
 }
 
 h2,
-h3,
 h3 {
   font-family: "Lato Regular", sans-serif;
+  font-weight: normal;
   user-select: none;
 }
 
 h2 {
   margin-bottom: 14px;
   font-size: 2.1em;
-  font-weight: normal;
   text-transform: uppercase;
 }
 
