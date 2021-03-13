@@ -322,21 +322,23 @@ img.secondary {
   }
 
   h2:after {
-    content: "";
-    position: absolute;
-    display: block;
-    top: 0;
+    background: linear-gradient(to right, #e7f5ff 0%, #e7fff5 100%);
     bottom: 0;
-    left: 0;
-    width: 0;
+    content: "";
+    display: block;
     height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: 490ms width, 350ms opacity;
+    width: 0%;
     z-index: -1;
-    transition: 490ms width;
   }
 
   section.selected h2:after {
     width: 100%;
-    background: linear-gradient(to right, #e7f5ff 0%, #e7fff5 100%);
+    opacity: 1;
   }
 
   h3 {
