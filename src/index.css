@@ -21,6 +21,10 @@ body {
   transition: 350ms padding, 700ms opacity;
 }
 
+#everything:not(#noscript-detected + #everything, .loaded) {
+  opacity: 0;
+}
+
 ::selection {
   text-shadow: none;
   background: #e7fff5;

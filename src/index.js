@@ -280,6 +280,6 @@
   onResize();
 
   setTimeout(function () {
-    document.body.style.opacity = "1";
+    document.getElementById("everything").classList.add("loaded");
   }, initialFadeInDelay);
 })(window, document);
