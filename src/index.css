@@ -147,7 +147,7 @@ nav li.selected:after {
   color: black;
   font-size: 1.35rem;
   margin-bottom: 35px;
-  padding: 3px 7px 3px 21px;
+  padding: 3px 7px 0 21px;
   position: relative;
 }
 
