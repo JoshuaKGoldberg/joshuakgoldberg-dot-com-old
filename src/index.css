@@ -141,6 +141,25 @@ nav li.selected:after {
   width: 100%;
 }
 
+/* Description */
+
+.description {
+  color: black;
+  font-size: 1.35rem;
+  margin-bottom: 35px;
+  padding: 3px 7px 3px 21px;
+  position: relative;
+}
+
+.description::before {
+  background: linear-gradient(to bottom, #a3cdeb 0%, #a7f0d3 100%);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 10px;
+}
+
 /* Sections */
 
 section {
@@ -270,7 +289,6 @@ img.secondary {
 }
 
 #contact h1 {
-  margin: 7px 0;
   color: #282828;
   font-size: 2.1em;
   font-family: "Lato Regular", sans-serif;
@@ -329,6 +347,12 @@ img.secondary {
 
   .text-together {
     display: inline-block;
+  }
+
+  /* Description */
+
+  .description {
+    margin-top: 35px;
   }
 
   /* Sections */
@@ -429,19 +453,19 @@ img.secondary {
   .cell-5 {
     grid-area: 4 / 2 / 7 / 3;
   }
-
-  .cell-8 {
-    display: flex;
-    justify-content: end;
-    grid-area: 6 / 3 / 7 / 4;
+  .cell-6 {
+    grid-area: 4 / 3 / 5 / 4;
+    padding-top: 8px;
   }
 
   .cell-7 {
     grid-area: 5 / 3 / 6 / 4;
   }
 
-  .cell-6 {
-    grid-area: 4 / 3 / 5 / 4;
+  .cell-8 {
+    display: flex;
+    justify-content: end;
+    grid-area: 6 / 3 / 7 / 4;
   }
 
   /* Groups */
@@ -515,6 +539,10 @@ img.secondary {
     margin-right: 42px;
     float: left;
     height: 266px;
+  }
+
+  .description {
+    margin-top: 0;
   }
 
   h2 {

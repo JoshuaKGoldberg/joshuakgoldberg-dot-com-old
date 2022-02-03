@@ -38,13 +38,9 @@
 
   /**
    * Which section is currently selected.
+   * @type {number}
    */
-  let selectedSection = 0;
-
-  /**
-   * Whether scroll events are attached to the window.
-   */
-  let addedScrollEvents = false;
+  let selectedSection;
 
   /**
    * Loads an image's source then fades it in.
@@ -184,7 +180,10 @@
    * @param {Object} grouping   Object containing two sections to update.
    */
   function updateSelectionClassNames(newSection, grouping) {
-    grouping[selectedSection].className = "";
+    if (selectedSection !== undefined) {
+      grouping[selectedSection].className = "";
+    }
+
     grouping[newSection].className = "selected";
   }
 
@@ -219,28 +218,6 @@
       setLocationHash(sections[newSection].id);
     }
   });
-
-  /**
-   * Attaches scrolling events to the window if they're not already attached.
-   */
-  function addScrollEvents() {
-    if (addedScrollEvents) {
-      return;
-    }
-
-    window.addEventListener("scroll", onScroll, {
-      passive: true,
-    });
-    addedScrollEvents = true;
-  }
-
-  /**
-   * Removes attached scrolling events from the window.
-   */
-  function removeScrollEvents() {
-    window.removeEventListener("scroll", onScroll);
-    addedScrollEvents = false;
-  }
 
   /**
    * Handles screen resizing by checking if images should load.
