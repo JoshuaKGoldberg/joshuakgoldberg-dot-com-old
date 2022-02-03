@@ -1,86 +1,110 @@
 // @ts-check
 
-(function(window, document) {
+(function (window, document) {
   /**
    * ToC-style List elements from the navbar.
    */
-  var linkers = [].slice.call(document.querySelectorAll("nav ul li"));
+  const linkers = [].slice.call(document.querySelectorAll("nav ul li"));
 
   /**
    * Main sections of the page.
    */
-  var sections = [].slice.call(document.querySelectorAll("section"));
+  const sections = [].slice.call(document.querySelectorAll("section"));
 
   /**
-   * Images that will need to fade in.
+   * Images and emojis that will need to fade in.
    */
-  var images = [].slice.call(document.querySelectorAll("img"));
+  const imageLikes = [].slice.call(document.querySelectorAll("img, .emoji"));
 
   /**
    * CSS media query threshold to not load images.
    */
-  var thinScreenThreshold = 560;
+  const thinScreenThreshold = 560;
 
   /**
    * How many milliseconds to wait before initial fading in.
    */
-  var initialFadeInDelay = 117;
+  const initialFadeInDelay = 117;
 
   /**
    * How many milliseconds it takes for an image to fade in or out.
    */
-  var imageOpacityFadeTime = 350;
+  const imageLikeOpacityFadeTime = 350;
 
   /**
    * Data prefix for storing image data locally.
    */
-  var localStoragePrefix = "jkg-dot-com-images:";
+  const localStoragePrefix = "jkg-dot-com-images:";
 
   /**
    * Which section is currently selected.
    */
-  var selectedSection = 0;
+  let selectedSection = 0;
 
   /**
    * Whether scroll events are attached to the window.
    */
-  var addedScrollEvents = false;
+  let addedScrollEvents = false;
 
   /**
    * Loads an image's source then fades it in.
    *
-   * @param {HTMLImageElement} image   Image to visually fade in.
+   * @param {HTMLElement} imageLike   Image or emoji to visually fade in.
+   */
+  function fadeImageLikeIn(imageLike) {
+    if (imageLike.tagName === "IMG") {
+      fadeImageIn(imageLike);
+    } else {
+      fadeEmojiIn(imageLike);
+    }
+  }
+
+  /**
+   * Fades an emoji from its temporary circle to an image.
+   *
+   * @param {HTMLElement} emoji   Image or emoji to visually fade in.
+   */
+  function fadeEmojiIn(emoji) {
+    setTimeout(() => {
+      emoji.classList.add("loaded");
+    }, imageLikeOpacityFadeTime);
+  }
+
+  /**
+   * Loads an image's source then fades it in.
+   *
+   * @param {HTMLElement} image   Image to visually fade in.
    */
   function fadeImageIn(image) {
-    var newImageUri = image.getAttribute("data-src");
-    var storageKey = localStoragePrefix + newImageUri;
+    const newImageUri = image.getAttribute("data-src");
+    const storageKey = localStoragePrefix + newImageUri;
 
-    var storedData = localStorage.getItem(storageKey);
+    const storedData = localStorage.getItem(storageKey);
     if (storedData) {
-      image.className += " loading";
-      setTimeout(function() {
+      image.classList.add("loading");
+      setTimeout(function () {
         image.setAttribute("src", storedData);
-        image.className = image.className.replace("loading", "loaded");
-      }, imageOpacityFadeTime);
+        image.classList.replace("loading", "loaded");
+      }, imageLikeOpacityFadeTime);
       return;
     }
 
-    var loadRequest = new XMLHttpRequest();
+    const loadRequest = new XMLHttpRequest();
 
-    loadRequest.addEventListener("load", function() {
-      var response = loadRequest.response;
+    loadRequest.addEventListener("load", function () {
+      const response = loadRequest.response;
 
-      image.className += " loading";
+      image.classList.add("loading");
 
-      setTimeout(function() {
-        var reader = new FileReader();
-        reader.onloadend = function() {
+      setTimeout(function () {
+        const reader = new FileReader();
+        reader.onloadend = function () {
           localStorage.setItem(storageKey, reader.result.toString());
           image.setAttribute("src", reader.result.toString());
-          image.className = image.className.replace("loading", "loaded");
+          image.classList.replace("loading", "loaded");
         };
         reader.readAsDataURL(response);
-      }, imageOpacityFadeTime);
+      }, imageLikeOpacityFadeTime);
     });
 
     loadRequest.responseType = "blob";
@@ -94,16 +118,16 @@
    * @param {Function} callback
    */
   function throttleSync(callback) {
-    var running = false;
+    let running = false;
 
-    return function() {
+    return function () {
       if (running) {
         return;
       }
 
       running = true;
 
-      setTimeout(function() {
+      setTimeout(function () {
         callback();
         running = false;
       });
@@ -132,7 +156,7 @@
 
     offsetY += partialHeight;
 
-    for (var i = sections.length - 1; i >= 0; i -= 1) {
+    for (let i = sections.length - 1; i >= 0; i -= 1) {
       if (sections[i].offsetTop < offsetY) {
         return i;
       }
@@ -170,7 +194,7 @@
    * @param {string} hash   A new section ID for a hash.
    */
   function setLocationHash(hash) {
-    var element = document.getElementById(hash);
+    const element = document.getElementById(hash);
 
     element.id = "";
 
@@ -186,13 +210,9 @@
   /**
    * Handles the page scrolling by checking for section selection.
    */
-  var onScroll = throttleSync(function() {
-    var offsetY = getOffsetY();
-    var newSection = getCurrentSection(
-      sections,
-      offsetY,
-      window.innerHeight / 4
-    );
+  const onScroll = throttleSync(function () {
+    const offsetY = getOffsetY();
+    const newSection = getCurrentSection(sections, offsetY, window.innerHeight / 4);
 
     if (newSection !== selectedSection) {
       setSelectedSection(newSection);
@@ -209,7 +229,7 @@
     }
 
     window.addEventListener("scroll", onScroll, {
-      passive: true
+      passive: true,
     });
     addedScrollEvents = true;
   }
@@ -232,8 +252,8 @@
 
     window.removeEventListener("resize", onResize);
 
-    for (var i = 0; i < images.length; i += 1) {
-      setTimeout(fadeImageIn, i * 140, images[i]);
+    for (let i = 0; i < imageLikes.length; i += 1) {
+      setTimeout(fadeImageLikeIn, i * 140, imageLikes[i]);
     }
   }
 
@@ -243,13 +263,13 @@
   function onLoad() {
     window.removeEventListener("load", onLoad);
     window.addEventListener("resize", onResize, {
-      passive: true
+      passive: true,
     });
     window.addEventListener("scroll", onScroll, {
-      passive: true
+      passive: true,
     });
     window.addEventListener("click", onScroll, {
-      passive: true
+      passive: true,
     });
 
     onScroll();
@@ -259,7 +279,7 @@
   window.addEventListener("load", onLoad);
   onResize();
 
-  setTimeout(function() {
+  setTimeout(function () {
     document.body.style.opacity = "1";
   }, initialFadeInDelay);
 })(window, document);
