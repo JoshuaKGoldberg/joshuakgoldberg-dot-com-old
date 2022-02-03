@@ -81,6 +81,10 @@ footer a {
   font-weight: bold;
 }
 
+.larger {
+  font-size: 1rem;
+}
+
 /* Nav */
 
 nav {
@@ -427,6 +431,8 @@ img.secondary {
   }
 
   .cell-8 {
+    display: flex;
+    justify-content: end;
     grid-area: 6 / 3 / 7 / 4;
   }
 
