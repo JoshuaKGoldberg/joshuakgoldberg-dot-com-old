@@ -221,6 +221,10 @@ footer,
 
 /* Emojis */
 
+.emoji {
+  display: none;
+}
+
 .emoji:not(.loaded) span {
   opacity: 0;
 }
@@ -340,6 +344,7 @@ img.secondary {
     font-size: 2.1em;
   }
 
+  .emoji,
   img {
     display: inline-block;
     transition: 350ms opacity;
