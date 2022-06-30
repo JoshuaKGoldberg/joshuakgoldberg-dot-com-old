@@ -35,7 +35,7 @@
     "files:images": "xcopy src\\img lib\\img /isy",
     "html": "html-minifier --file-ext html --input-dir src --output-dir lib --collapse-whitespace --remove-attribute-quotes",
     "js": "uglifyjs src/index.js --compress --mangle --output lib/index.js",
-    "start": "http-server src",
+    "start": "http-server src --port 1337",
     "verify": "npm run css && npm run html && npm run files && npm run js"
   },
   "version": "1.0.0"
